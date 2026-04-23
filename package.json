@@ -5,6 +5,7 @@
   "scripts": {
     "preinstall": "sh -c 'rm -f package-lock.json yarn.lock; case \"$npm_config_user_agent\" in pnpm/*) ;; *) echo \"Use pnpm instead\" >&2; exit 1 ;; esac'",
     "build": "PORT=3000 BASE_PATH=/ npx pnpm@10 --filter @workspace/agroloop run build && mkdir -p artifacts/api-server/public && cp -r artifacts/agroloop/dist/public/. artifacts/api-server/public/ && npx pnpm@10 --filter @workspace/api-server run build",
+    "vercel-build": "pnpm --filter @workspace/agroloop run build && mkdir -p dist && cp -r artifacts/agroloop/dist/public/. dist/",
     "typecheck:libs": "tsc --build",
     "typecheck": "pnpm run typecheck:libs && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck"
   },
