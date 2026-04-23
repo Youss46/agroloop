@@ -1,7 +1,7 @@
 {
-  "buildCommand": "npx pnpm@10 install --no-frozen-lockfile && BASE_PATH=/ npx pnpm@10 --filter @workspace/agroloop run build",
+  "installCommand": "pnpm install --no-frozen-lockfile",
+  "buildCommand": "pnpm --filter @workspace/agroloop run build",
   "outputDirectory": "artifacts/agroloop/dist/public",
-  "installCommand": "echo 'install done in buildCommand'",
   "framework": null,
   "rewrites": [
     {
