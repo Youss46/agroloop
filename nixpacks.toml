@@ -1,0 +1,16 @@
+[phases.setup]
+nixPkgs = ["nodejs_20"]
+
+[phases.install]
+cmds = ["npm install -g pnpm@10 && pnpm install --no-frozen-lockfile"]
+
+[phases.build]
+cmds = [
+  "PORT=3000 BASE_PATH=/ pnpm --filter @workspace/agroloop run build",
+  "mkdir -p artifacts/api-server/public",
+  "cp -r artifacts/agroloop/dist/public/. artifacts/api-server/public/",
+  "pnpm --filter @workspace/api-server run build"
+]
+
+[start]
+cmd = "NODE_ENV=production node --enable-source-maps artifacts/api-server/dist/index.mjs"
