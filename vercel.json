@@ -1,0 +1,4 @@
+{
+  "buildCommand": "echo 'Ce projet est déployé sur Railway, pas Vercel.' && exit 1",
+  "ignoreCommand": "exit 0"
+}
