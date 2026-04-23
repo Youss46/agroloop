@@ -1,10 +1,16 @@
 {
-  "buildCommand": "npx pnpm@10 install --no-frozen-lockfile && PORT=3000 BASE_PATH=/ npx pnpm@10 --filter @workspace/agroloop run build",
+  "buildCommand": "npx pnpm@10 install --no-frozen-lockfile && BASE_PATH=/ npx pnpm@10 --filter @workspace/agroloop run build",
   "outputDirectory": "artifacts/agroloop/dist/public",
-  "installCommand": "echo 'install handled in buildCommand'",
+  "installCommand": "echo 'install done in buildCommand'",
   "framework": null,
   "rewrites": [
-    { "source": "/api/:path*", "destination": "https://your-app.up.railway.app/api/:path*" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    {
+      "source": "/api/:path*",
+      "destination": "https://api.agroloopci.ci/api/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
   ]
 }
