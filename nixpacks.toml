@@ -5,4 +5,4 @@ nixPkgs = ["nodejs_20"]
 cmds = ["npx --yes pnpm@10 install --no-frozen-lockfile"]
 
 [start]
-cmd = "NODE_ENV=production node --enable-source-maps artifacts/api-server/dist/index.mjs"
+cmd = "NODE_ENV=production node_modules/.bin/drizzle-kit push --config lib/db/drizzle.config.ts --force && node --enable-source-maps artifacts/api-server/dist/index.mjs"
