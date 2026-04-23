@@ -4,13 +4,5 @@ nixPkgs = ["nodejs_20"]
 [phases.install]
 cmds = ["npx --yes pnpm@10 install --no-frozen-lockfile"]
 
-[phases.build]
-cmds = [
-  "PORT=3000 BASE_PATH=/ npx pnpm@10 --filter @workspace/agroloop run build",
-  "mkdir -p artifacts/api-server/public",
-  "cp -r artifacts/agroloop/dist/public/. artifacts/api-server/public/",
-  "npx pnpm@10 --filter @workspace/api-server run build"
-]
-
 [start]
 cmd = "NODE_ENV=production node --enable-source-maps artifacts/api-server/dist/index.mjs"
