@@ -18,18 +18,19 @@ import {
 import { Input } from "@/components/ui/input";
 import { PasswordInput } from "@/components/ui/PasswordInput";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Loader2, Sprout, Recycle } from "lucide-react";
 
 const REGIONS = [
-  "Abidjan", 
-  "San Pedro", 
-  "Abengourou", 
-  "Bouaké", 
-  "Korhogo", 
-  "Yamoussoukro", 
-  "Autre"
+  "Abidjan",
+  "San Pedro",
+  "Abengourou",
+  "Bouaké",
+  "Korhogo",
+  "Daloa",
+  "Man",
+  "Yamoussoukro",
+  "Autre",
 ] as const;
 
 const registerSchema = z.object({
@@ -201,20 +202,20 @@ export default function Register() {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Région principale</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl>
-                            <SelectTrigger data-testid="select-register-region">
-                              <SelectValue placeholder="Sélectionnez une région" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
+                        <FormControl>
+                          <select
+                            {...field}
+                            onChange={(e) => field.onChange(e.target.value)}
+                            data-testid="select-register-region"
+                            className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+                          >
                             {REGIONS.map((region) => (
-                              <SelectItem key={region} value={region}>
+                              <option key={region} value={region}>
                                 {region}
-                              </SelectItem>
+                              </option>
                             ))}
-                          </SelectContent>
-                        </Select>
+                          </select>
+                        </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
