@@ -34,7 +34,27 @@ app.use(
     },
   }),
 );
-app.use(cors());
+// Allow cross-origin requests from Vercel frontend (and any other configured origins)
+const allowedOrigins = process.env.ALLOWED_ORIGINS
+  ? process.env.ALLOWED_ORIGINS.split(",").map((o) => o.trim())
+  : [];
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      // Allow requests with no origin (mobile apps, curl, Railway internal)
+      if (!origin) return callback(null, true);
+      // Allow all origins in development
+      if (process.env.NODE_ENV !== "production") return callback(null, true);
+      // In production, allow configured origins or same-origin
+      if (allowedOrigins.length === 0 || allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+      callback(new Error(`CORS: origin ${origin} not allowed`));
+    },
+    credentials: true,
+  }),
+);
 app.use(cookieParser());
 // Larger JSON limit needed for base64 avatar uploads (~2MB raw → ~3MB encoded)
 app.use(express.json({ limit: "16mb" }));

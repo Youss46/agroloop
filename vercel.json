@@ -1,4 +1,10 @@
 {
-  "buildCommand": "echo 'Ce projet est déployé sur Railway, pas Vercel.' && exit 1",
-  "ignoreCommand": "exit 0"
+  "buildCommand": "npx pnpm@10 install --no-frozen-lockfile && PORT=3000 BASE_PATH=/ npx pnpm@10 --filter @workspace/agroloop run build",
+  "outputDirectory": "artifacts/agroloop/dist/public",
+  "installCommand": "echo 'install handled in buildCommand'",
+  "framework": null,
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "https://your-app.up.railway.app/api/:path*" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
 }
