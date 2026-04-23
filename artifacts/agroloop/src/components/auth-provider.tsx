@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect, ReactNode, useMemo } from "react";
 import { useGetMe, getGetMeQueryKey } from "@workspace/api-client-react";
 import type { User } from "@workspace/api-client-react";
+import { useQueryClient } from "@tanstack/react-query";
 import { useLocation } from "wouter";
 
 export type AdminRoleName = "super_admin" | "moderateur" | "support" | "finance" | "commercial" | "admin";
@@ -46,6 +47,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   });
   const [user, setUser] = useState<AuthUser | null>(null);
   const [, setLocation] = useLocation();
+  const queryClient = useQueryClient();
 
   const { data: me, isLoading: isMeLoading } = useGetMe({
     query: {
@@ -76,6 +78,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.removeItem("agroloop_token");
     setToken(null);
     setUser(null);
+    queryClient.clear();
     setLocation("/login");
   };
 

@@ -65,6 +65,7 @@ import CommandesRecuesPage from "@/pages/commandes-recues";
 import HistoriquePage from "@/pages/historique";
 import DevPortalPage from "@/pages/dev-portal";
 import { NotificationToaster } from "@/components/notification-toaster";
+import { ErrorBoundary } from "@/components/error-boundary";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -339,7 +340,9 @@ function App() {
         <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
           <AuthProvider>
             <RouteTracker />
-            <Router />
+            <ErrorBoundary>
+              <Router />
+            </ErrorBoundary>
             <NotificationToaster />
             <Toaster />
             <CookieConsent />
