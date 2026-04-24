@@ -140,8 +140,8 @@ function FaqItem({ question, answer, index }: { question: string; answer: string
 
 export default function Home() {
   useSEO({
-    title: "Accueil",
-    description: "AgroLoopCI connecte producteurs et transformateurs de résidus agro-industriels en Côte d'Ivoire. Zéro gaspillage, impact maximum.",
+    title: "Valorisation résidus agro-industriels — Marketplace agricole UEMOA",
+    description: "AgroLoopCI est la première plateforme numérique d'économie circulaire agricole en Côte d'Ivoire. Achetez et vendez des résidus agro-industriels : coques d'anacarde, cabosses de cacao, tiges de plantain. Disponible à Abidjan et dans toute la zone UEMOA.",
     url: "/",
   });
   const { data: stats, isLoading } = useGetStats();
@@ -313,8 +313,121 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Nos filières — keyword-rich content section */}
+      <section className="py-24 bg-background" aria-label="Filières de valorisation des résidus agro-industriels en Côte d'Ivoire">
+        <div className="container px-4 md:px-6">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+              Résidus agro-industriels disponibles en Côte d'Ivoire
+            </h2>
+            <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
+              AgroLoopCI est la plateforme agriculture numérique de référence en Côte d'Ivoire pour l'économie circulaire agricole.
+              Découvrez les filières que nous couvrons, de la zone UEMOA à Abidjan en passant par les bassins de production.
+            </p>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {/* Cacao */}
+            <article className="rounded-2xl border bg-card p-6 flex flex-col gap-4 hover:shadow-md transition-shadow">
+              <div className="text-4xl">🍫</div>
+              <div>
+                <h3 className="text-lg font-semibold text-foreground">Cacao</h3>
+                <p className="text-xs text-primary font-medium mt-0.5">Valorisation résidus cacao · Côte d'Ivoire</p>
+              </div>
+              <p className="text-sm text-muted-foreground leading-relaxed flex-1">
+                La Côte d'Ivoire est le premier producteur mondial de cacao. Cabosses vides, coques et mucilage représentent
+                des millions de tonnes de résidus valorisables chaque année en bioénergie, compost et biogaz.
+              </p>
+              <ul className="text-xs text-muted-foreground space-y-1">
+                <li className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-primary shrink-0" />Cabosses de cacao</li>
+                <li className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-primary shrink-0" />Coques de cacao</li>
+                <li className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-primary shrink-0" />Mucilage de cacao</li>
+              </ul>
+              <Link href="/marketplace">
+                <Button size="sm" variant="outline" className="w-full gap-1 text-xs">
+                  Voir les offres <ArrowRight className="h-3 w-3" />
+                </Button>
+              </Link>
+            </article>
+
+            {/* Anacarde */}
+            <article className="rounded-2xl border bg-card p-6 flex flex-col gap-4 hover:shadow-md transition-shadow">
+              <div className="text-4xl">🥜</div>
+              <div>
+                <h3 className="text-lg font-semibold text-foreground">Anacarde</h3>
+                <p className="text-xs text-primary font-medium mt-0.5">Achat coques anacarde · Côte d'Ivoire</p>
+              </div>
+              <p className="text-sm text-muted-foreground leading-relaxed flex-1">
+                Premier exportateur mondial d'anacarde brut, la Côte d'Ivoire génère d'importantes quantités de coques
+                d'anacarde. Ces résidus sont très recherchés pour la production d'huile de CNSL, de charbon végétal et d'énergie thermique.
+              </p>
+              <ul className="text-xs text-muted-foreground space-y-1">
+                <li className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-primary shrink-0" />Coques d'anacarde (CNSL)</li>
+                <li className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-primary shrink-0" />Pellicules de noix</li>
+                <li className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-primary shrink-0" />Tiges et feuilles</li>
+              </ul>
+              <Link href="/marketplace">
+                <Button size="sm" variant="outline" className="w-full gap-1 text-xs">
+                  Voir les offres <ArrowRight className="h-3 w-3" />
+                </Button>
+              </Link>
+            </article>
+
+            {/* Plantain */}
+            <article className="rounded-2xl border bg-card p-6 flex flex-col gap-4 hover:shadow-md transition-shadow">
+              <div className="text-4xl">🍌</div>
+              <div>
+                <h3 className="text-lg font-semibold text-foreground">Plantain</h3>
+                <p className="text-xs text-primary font-medium mt-0.5">Résidus agro-industriels · Zone UEMOA</p>
+              </div>
+              <p className="text-sm text-muted-foreground leading-relaxed flex-1">
+                Culture vivrière majeure en Côte d'Ivoire et dans toute la zone UEMOA, le plantain génère des tiges,
+                régimes et feuilles transformables en fibres, paillis agricoles, emballages biodégradables et substrats de compostage.
+              </p>
+              <ul className="text-xs text-muted-foreground space-y-1">
+                <li className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-primary shrink-0" />Tiges de plantain</li>
+                <li className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-primary shrink-0" />Régimes vides</li>
+                <li className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-primary shrink-0" />Feuilles séchées</li>
+              </ul>
+              <Link href="/marketplace">
+                <Button size="sm" variant="outline" className="w-full gap-1 text-xs">
+                  Voir les offres <ArrowRight className="h-3 w-3" />
+                </Button>
+              </Link>
+            </article>
+
+            {/* Autres filières */}
+            <article className="rounded-2xl border bg-card p-6 flex flex-col gap-4 hover:shadow-md transition-shadow">
+              <div className="text-4xl">🌾</div>
+              <div>
+                <h3 className="text-lg font-semibold text-foreground">Autres filières</h3>
+                <p className="text-xs text-primary font-medium mt-0.5">Plateforme agriculture numérique CI</p>
+              </div>
+              <p className="text-sm text-muted-foreground leading-relaxed flex-1">
+                Au-delà du cacao et de l'anacarde, notre marketplace d'économie circulaire agricole couvre toutes
+                les filières ivoiriennes : riz, hévéa, palmier à huile, café. Une plateforme agriculture numérique ouverte à toute la Côte d'Ivoire.
+              </p>
+              <ul className="text-xs text-muted-foreground space-y-1">
+                <li className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-primary shrink-0" />Balles et paille de riz</li>
+                <li className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-primary shrink-0" />Rafles de palmier</li>
+                <li className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-primary shrink-0" />Pulpe de café</li>
+              </ul>
+              <Link href="/marketplace">
+                <Button size="sm" variant="outline" className="w-full gap-1 text-xs">
+                  Voir les offres <ArrowRight className="h-3 w-3" />
+                </Button>
+              </Link>
+            </article>
+          </div>
+
+          <p className="mt-10 text-center text-sm text-muted-foreground max-w-2xl mx-auto">
+            Toutes ces filières sont accessibles depuis notre marketplace : Abidjan, San Pedro, Bouaké, Korhogo, Daloa, Man, Abengourou, Yamoussoukro et toutes les régions de Côte d'Ivoire.
+          </p>
+        </div>
+      </section>
+
       {/* Nos chiffres — Animated counters */}
-      <section className="py-20 bg-background" aria-label="Nos chiffres clés">
+      <section className="py-20 bg-muted/30" aria-label="Nos chiffres clés">
         <div className="container px-4 md:px-6">
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 text-primary font-medium text-sm mb-3">

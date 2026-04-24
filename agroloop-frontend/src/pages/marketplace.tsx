@@ -28,8 +28,8 @@ import { TrendingDown, TrendingUp } from "lucide-react";
 
 export default function Marketplace() {
   useSEO({
-    title: "Marketplace — Offres de résidus agricoles",
-    description: "Trouvez des résidus agricoles disponibles en Côte d'Ivoire : cabosses de cacao, coques d'anacarde, tiges de plantain.",
+    title: "Marketplace agricole — Achat résidus agro-industriels Côte d'Ivoire",
+    description: "Achetez des résidus agro-industriels en Côte d'Ivoire : coques d'anacarde, cabosses de cacao, tiges de plantain, balles de riz. Marketplace B2B d'économie circulaire agricole accessible dans toute la zone UEMOA.",
     url: "/marketplace",
   });
   const { user } = useAuth();

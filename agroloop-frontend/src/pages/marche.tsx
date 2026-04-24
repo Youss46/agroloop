@@ -110,8 +110,8 @@ function VarBadge({ pct }: { pct: number }) {
 
 export default function Marche() {
   useSEO({
-    title: "Marché des Prix — Résidus Agricoles",
-    description: "Consultez les prix du marché des résidus agro-industriels en Côte d'Ivoire : cacao, anacarde, plantain et tendances régionales.",
+    title: "Prix des résidus agro-industriels Côte d'Ivoire",
+    description: "Cours et tendances des résidus agro-industriels en Côte d'Ivoire : prix des coques d'anacarde, cabosses de cacao, tiges de plantain par région. Données actualisées pour l'économie circulaire agricole.",
     url: "/marche",
   });
   const [typeResidu, setTypeResidu] = useState<string>("Cabosses de cacao");
