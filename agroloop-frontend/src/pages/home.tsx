@@ -1,11 +1,142 @@
 import { useGetStats } from "@/api-client";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Leaf, Recycle, Users, ArrowRight } from "lucide-react";
+import { Leaf, Recycle, Users, ArrowRight, ChevronDown, Star, MapPin, Package, TrendingUp } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import heroImage from "@assets/Screenshot_20260421-011356_1776734073256.png";
 import { useSEO } from "@/hooks/useSEO";
+import { useEffect, useRef, useState } from "react";
+
+const faqs = [
+  {
+    question: "Qu'est-ce que l'économie circulaire agricole ?",
+    answer: "L'économie circulaire agricole consiste à valoriser les résidus et sous-produits agricoles comme les cabosses de cacao, coques d'anacarde et tiges de plantain au lieu de les brûler ou les abandonner.",
+  },
+  {
+    question: "Comment fonctionne AgroLoopCI ?",
+    answer: "AgroLoopCI connecte les producteurs agricoles aux transformateurs via une marketplace géolocalisée. Les producteurs publient leurs résidus disponibles et les transformateurs les achètent directement.",
+  },
+  {
+    question: "Quels types de résidus agricoles sont disponibles ?",
+    answer: "Cabosses de cacao, coques d'anacarde, tiges de plantain, balles de riz et bien d'autres résidus agro-industriels en Côte d'Ivoire.",
+  },
+  {
+    question: "AgroLoopCI est-il gratuit ?",
+    answer: "L'inscription est gratuite. AgroLoopCI prend une petite commission uniquement sur les transactions réalisées.",
+  },
+  {
+    question: "Dans quelles régions opère AgroLoopCI ?",
+    answer: "AgroLoopCI opère dans toutes les régions de Côte d'Ivoire : Abidjan, San Pedro, Abengourou, Bouaké, Korhogo, Daloa, Man et Yamoussoukro.",
+  },
+];
+
+const testimonials = [
+  {
+    name: "Kouamé Arsène",
+    role: "Producteur de cacao",
+    region: "Bouaké",
+    avatar: "KA",
+    rating: 5,
+    text: "Avant AgroLoopCI, je brûlais mes cabosses vides après chaque récolte. Maintenant je les vends à 25 000 FCFA la tonne. En 3 mois j'ai généré plus de 150 000 FCFA de revenus supplémentaires. C'est une vraie révolution pour nous les producteurs.",
+  },
+  {
+    name: "Adjoua Micheline",
+    role: "Transformatrice — bioénergie",
+    region: "Abidjan",
+    avatar: "AM",
+    rating: 5,
+    text: "Je cherchais des coques d'anacarde pour ma chaudière de façon régulière. Grâce à la plateforme, j'ai trouvé 4 fournisseurs stables dans la région de Bouaflé. Les échanges via WhatsApp intégré sont très pratiques et la transaction est sécurisée.",
+  },
+  {
+    name: "N'Goran Sylvain",
+    role: "Producteur d'anacarde",
+    region: "Korhogo",
+    avatar: "NS",
+    rating: 5,
+    text: "La carte interactive m'a permis de trouver un transformateur à seulement 30 km de mon exploitation. Le transport est maintenant rentable. J'ai vendu mes premières coques en moins de 48h après mon inscription. Je recommande vivement.",
+  },
+];
+
+const chiffres = [
+  { value: 500, suffix: "+", label: "Tonnes de résidus valorisées", icon: Package, color: "text-primary", bg: "bg-primary/10" },
+  { value: 50, suffix: "+", label: "Producteurs actifs", icon: Leaf, color: "text-emerald-600", bg: "bg-emerald-50" },
+  { value: 20, suffix: "+", label: "Transformateurs partenaires", icon: Recycle, color: "text-blue-600", bg: "bg-blue-50" },
+  { value: 10, suffix: "", label: "Régions couvertes", icon: MapPin, color: "text-orange-600", bg: "bg-orange-50" },
+];
+
+function useCountUp(target: number, duration = 1800, triggered = false) {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    if (!triggered) return;
+    let start = 0;
+    const step = Math.ceil(target / (duration / 16));
+    const timer = setInterval(() => {
+      start += step;
+      if (start >= target) {
+        setCount(target);
+        clearInterval(timer);
+      } else {
+        setCount(start);
+      }
+    }, 16);
+    return () => clearInterval(timer);
+  }, [target, duration, triggered]);
+  return count;
+}
+
+function AnimatedCounter({ value, suffix, label, icon: Icon, color, bg }: typeof chiffres[0]) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [triggered, setTriggered] = useState(false);
+  const count = useCountUp(value, 1600, triggered);
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setTriggered(true); obs.disconnect(); } },
+      { threshold: 0.3 }
+    );
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} className="flex flex-col items-center text-center p-6">
+      <div className={`p-4 ${bg} rounded-full mb-4`}>
+        <Icon className={`h-7 w-7 ${color}`} />
+      </div>
+      <div className={`text-4xl font-extrabold ${color} tabular-nums`}>
+        {count}{suffix}
+      </div>
+      <p className="mt-2 text-sm font-medium text-muted-foreground uppercase tracking-wider max-w-[140px]">
+        {label}
+      </p>
+    </div>
+  );
+}
+
+function FaqItem({ question, answer, index }: { question: string; answer: string; index: number }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="border-b border-border last:border-0">
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between py-5 text-left gap-4 hover:text-primary transition-colors"
+        aria-expanded={open}
+        data-testid={`faq-item-${index}`}
+      >
+        <span className="font-medium text-foreground">{question}</span>
+        <ChevronDown
+          className={`h-5 w-5 shrink-0 text-muted-foreground transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+        />
+      </button>
+      {open && (
+        <div className="pb-5 text-muted-foreground leading-relaxed">
+          {answer}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function Home() {
   useSEO({
@@ -178,6 +309,96 @@ export default function Home() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Nos chiffres — Animated counters */}
+      <section className="py-20 bg-background" aria-label="Nos chiffres clés">
+        <div className="container px-4 md:px-6">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 text-primary font-medium text-sm mb-3">
+              <TrendingUp className="h-4 w-4" />
+              En constante croissance
+            </div>
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Nos chiffres</h2>
+            <p className="mt-4 text-muted-foreground max-w-xl mx-auto">
+              Des résultats concrets qui témoignent de l'impact d'AgroLoopCI sur l'économie circulaire agricole en Côte d'Ivoire.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 bg-muted/30 rounded-2xl overflow-hidden border">
+            {chiffres.map((c) => (
+              <AnimatedCounter key={c.label} {...c} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Témoignages */}
+      <section className="py-24 bg-muted/30" aria-label="Témoignages clients">
+        <div className="container px-4 md:px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Ce que disent nos membres</h2>
+            <p className="mt-4 text-muted-foreground max-w-xl mx-auto">
+              Des producteurs et transformateurs qui ont transformé leur activité grâce à AgroLoopCI.
+            </p>
+          </div>
+          <div className="grid gap-6 md:grid-cols-3">
+            {testimonials.map((t) => (
+              <Card key={t.name} className="border shadow-sm bg-card flex flex-col">
+                <CardContent className="p-6 flex flex-col gap-4 flex-1">
+                  <div className="flex gap-1">
+                    {Array.from({ length: t.rating }).map((_, i) => (
+                      <Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400" />
+                    ))}
+                  </div>
+                  <blockquote className="text-muted-foreground leading-relaxed flex-1 italic">
+                    &ldquo;{t.text}&rdquo;
+                  </blockquote>
+                  <div className="flex items-center gap-3 pt-2 border-t">
+                    <div className="h-10 w-10 rounded-full bg-primary/10 text-primary font-bold text-sm flex items-center justify-center shrink-0">
+                      {t.avatar}
+                    </div>
+                    <div>
+                      <div className="font-semibold text-sm">{t.name}</div>
+                      <div className="text-xs text-muted-foreground">{t.role} · {t.region}</div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-24 bg-background" aria-label="Foire aux questions" itemScope itemType="https://schema.org/FAQPage">
+        <div className="container px-4 md:px-6 max-w-3xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Questions fréquentes</h2>
+            <p className="mt-4 text-muted-foreground">
+              Tout ce que vous devez savoir avant de commencer.
+            </p>
+          </div>
+          <div className="rounded-2xl border bg-card shadow-sm px-6">
+            {faqs.map((faq, i) => (
+              <div key={i} itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
+                <meta itemProp="name" content={faq.question} />
+                <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
+                  <meta itemProp="text" content={faq.answer} />
+                </div>
+                <FaqItem question={faq.question} answer={faq.answer} index={i} />
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 text-center">
+            <p className="text-muted-foreground mb-4">Vous avez d'autres questions ?</p>
+            <Link href="/register">
+              <Button className="gap-2">
+                Créer un compte gratuit <ArrowRight className="h-4 w-4" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
