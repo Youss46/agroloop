@@ -125,7 +125,7 @@ function ReceivedOrderItemCard({ item }: { item: ReceivedOrderItem }) {
         <div className="flex items-start gap-3">
           <div className="shrink-0 h-14 w-14 rounded bg-muted overflow-hidden">
             {item.offer.cover_photo_url ? (
-              <img src={item.offer.cover_photo_url} alt="" className="h-full w-full object-cover" />
+              <img src={item.offer.cover_photo_url} alt="" className="h-full w-full object-cover" loading="lazy" />
             ) : (
               <div className="h-full w-full flex items-center justify-center text-muted-foreground">
                 <Package className="h-5 w-5" />

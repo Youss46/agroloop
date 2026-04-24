@@ -156,7 +156,7 @@ export function PhotoUploader({ photos, onChange }: Props) {
                 data-testid={`photo-tile-${idx}`}
               >
                 {p.status === "done" ? (
-                  <img src={p.dataUrl} alt={p.fileName} className="w-full h-full object-cover" />
+                  <img src={p.dataUrl} alt={p.fileName} className="w-full h-full object-cover" loading="lazy" />
                 ) : p.status === "uploading" ? (
                   <div className="w-full h-full flex flex-col items-center justify-center text-muted-foreground gap-2">
                     <Loader2 className="h-6 w-6 animate-spin" />

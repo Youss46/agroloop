@@ -19,6 +19,16 @@ export default defineConfig({
   build: {
     outDir: path.resolve(__dirname, "dist"),
     emptyOutDir: true,
+    chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ["react", "react-dom"],
+          charts: ["recharts"],
+          maps: ["leaflet", "react-leaflet"],
+        },
+      },
+    },
   },
   server: {
     port: 5173,

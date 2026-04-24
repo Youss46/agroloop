@@ -158,7 +158,7 @@ function ProducteurCard({ p }: { p: FavoriteProducteur }) {
         <div className="flex items-start gap-3">
           <Link href={`/profil/${p.id}`} className="flex-shrink-0">
             {p.avatarUrl ? (
-              <img src={p.avatarUrl} alt={p.name} className="h-14 w-14 rounded-full object-cover" />
+              <img src={p.avatarUrl} alt={p.name} className="h-14 w-14 rounded-full object-cover" loading="lazy" />
             ) : (
               <div className="h-14 w-14 rounded-full bg-muted flex items-center justify-center text-lg font-semibold">
                 {p.name.charAt(0).toUpperCase()}

@@ -118,7 +118,7 @@ export default function OffreDetail() {
             data-testid="button-cover-photo"
           >
             {cover ? (
-              <img src={cover.file_url} alt={offre.typeResidu} className="w-full h-full object-cover" />
+              <img src={cover.file_url} alt={offre.typeResidu} className="w-full h-full object-cover" loading="lazy" />
             ) : (
               <div className="w-full h-full flex items-center justify-center text-muted-foreground">Pas de photo</div>
             )}
@@ -134,7 +134,7 @@ export default function OffreDetail() {
                   className="relative aspect-square rounded-md overflow-hidden bg-muted hover:ring-2 hover:ring-primary"
                   data-testid={`button-thumb-${i}`}
                 >
-                  <img src={p.thumbnail_url} alt="" className="w-full h-full object-cover" />
+                  <img src={p.thumbnail_url} alt="" className="w-full h-full object-cover" loading="lazy" />
                 </button>
               ))}
             </div>

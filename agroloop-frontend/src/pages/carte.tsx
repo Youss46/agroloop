@@ -157,7 +157,7 @@ export default function Carte() {
                 <div className="min-w-[220px] p-1">
                   <div className="flex gap-2 mb-2">
                     {offre.cover_photo_url ? (
-                      <img src={offre.cover_photo_url} alt={offre.typeResidu} className="w-[80px] h-[80px] object-cover rounded shrink-0" />
+                      <img src={offre.cover_photo_url} alt={offre.typeResidu} className="w-[80px] h-[80px] object-cover rounded shrink-0" loading="lazy" />
                     ) : (
                       <div className="w-[80px] h-[80px] bg-muted rounded shrink-0 flex items-center justify-center text-muted-foreground text-xs">Pas de photo</div>
                     )}

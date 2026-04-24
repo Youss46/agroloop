@@ -165,7 +165,7 @@ export default function Home() {
             </div>
             
             <div className="relative mx-auto w-full max-w-[500px] aspect-square rounded-2xl overflow-hidden border bg-background shadow-xl">
-              <img src={heroImage} alt="Cabosses de cacao sur l'arbre" className="absolute inset-0 w-full h-full object-cover" />
+              <img src={heroImage} alt="Cabosses de cacao sur l'arbre" className="absolute inset-0 w-full h-full object-cover" loading="eager" fetchPriority="high" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               <div className="absolute bottom-6 left-6 right-6">
                 <div className="bg-white/90 backdrop-blur-sm p-4 rounded-xl shadow-lg">

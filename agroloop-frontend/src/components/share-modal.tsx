@@ -85,7 +85,7 @@ AgroLoopCI — Valorisation des résidus agricoles en Côte d'Ivoire 🌿`;
 
         <div className="my-4 rounded-lg border bg-muted/30 p-4 flex gap-3">
           {offre.coverPhoto ? (
-            <img src={offre.coverPhoto} alt={offre.type_residu} className="h-16 w-16 object-cover rounded-md flex-shrink-0" />
+            <img src={offre.coverPhoto} alt={offre.type_residu} className="h-16 w-16 object-cover rounded-md flex-shrink-0" loading="lazy" />
           ) : (
             <div className="h-16 w-16 rounded-md bg-muted flex-shrink-0" />
           )}

@@ -124,7 +124,7 @@ export function AdminLayout({ children }: { children: ReactNode }) {
       {/* ── ADMIN TOP BAR ──────────────────────────────────────── */}
       <header className="sticky top-0 z-40 h-14 bg-white border-b flex items-center px-4 md:px-6 gap-4">
         <Link href="/admin" className="flex items-center gap-2 shrink-0" data-testid="admin-topbar-logo">
-          <img src="/brand/agroloop-logo-light.png" alt="AgroLoopCI" className="h-8 w-auto" />
+          <img src="/brand/agroloop-logo-light.png" alt="AgroLoopCI" className="h-8 w-auto" loading="eager" />
           <span className="hidden sm:inline text-sm text-muted-foreground border-l pl-2 ml-1">Console Admin</span>
         </Link>
 

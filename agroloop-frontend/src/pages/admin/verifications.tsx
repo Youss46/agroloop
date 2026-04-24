@@ -280,7 +280,7 @@ export default function AdminVerifications() {
             <DialogTitle>{previewDoc?.fileName}</DialogTitle>
           </DialogHeader>
           {previewDoc && previewDoc.fileUrl?.startsWith("data:image") && (
-            <img src={previewDoc.fileUrl} alt={previewDoc.fileName} className="max-h-[70vh] mx-auto" />
+            <img src={previewDoc.fileUrl} alt={previewDoc.fileName} className="max-h-[70vh] mx-auto" loading="lazy" />
           )}
           {previewDoc && previewDoc.fileUrl?.startsWith("data:application/pdf") && (
             <iframe src={previewDoc.fileUrl} className="w-full h-[70vh]" title="PDF" />
