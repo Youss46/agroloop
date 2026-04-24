@@ -3,7 +3,6 @@
   "buildCommand": "pnpm -w run vercel-build",
   "outputDirectory": "dist",
   "framework": null,
-  "nodeVersion": "20.x",
   "rewrites": [
     {
       "source": "/api/:path*",
