@@ -10,6 +10,7 @@ import { CookieConsent } from "@/components/cookie-consent";
 import { initAnalytics, trackPageView } from "@/lib/analytics";
 import { NotificationToaster } from "@/components/notification-toaster";
 import { ErrorBoundary } from "@/components/error-boundary";
+import { PwaInstallBanner } from "@/components/pwa-install-banner";
 
 import Home from "@/pages/home";
 import Login from "@/pages/login";
@@ -360,6 +361,7 @@ function App() {
             <NotificationToaster />
             <Toaster />
             <CookieConsent />
+            <PwaInstallBanner />
           </AuthProvider>
         </WouterRouter>
       </TooltipProvider>
