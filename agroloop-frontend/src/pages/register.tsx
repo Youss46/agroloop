@@ -5,6 +5,7 @@ import { Link, useLocation } from "wouter";
 import { useAuth } from "@/components/auth-provider";
 import { useRegisterUser } from "@/api-client";
 import { useToast } from "@/hooks/use-toast";
+import { useSEO } from "@/hooks/useSEO";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -43,6 +44,11 @@ const registerSchema = z.object({
 });
 
 export default function Register() {
+  useSEO({
+    title: "Inscription",
+    description: "Rejoignez AgroLoopCI et commencez à valoriser vos résidus agricoles ou à trouver des matières premières secondaires.",
+    url: "/register",
+  });
   const [, setLocation] = useLocation();
   const { login } = useAuth();
   const { toast } = useToast();

@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { markSearchPerformed } from "@/components/onboarding-checklist";
 import { useAuth } from "@/components/auth-provider";
 import { useListOffres, useCreateConversation } from "@/api-client";
+import { useSEO } from "@/hooks/useSEO";
 import { dashboardApi, type BuyerStatesMap } from "@/lib/buyer-state-api";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -26,6 +27,11 @@ import { marcheApi, type PrixActuel } from "@/lib/marche-api";
 import { TrendingDown, TrendingUp } from "lucide-react";
 
 export default function Marketplace() {
+  useSEO({
+    title: "Marketplace — Offres de résidus agricoles",
+    description: "Trouvez des résidus agricoles disponibles en Côte d'Ivoire : cabosses de cacao, coques d'anacarde, tiges de plantain.",
+    url: "/marketplace",
+  });
   const { user } = useAuth();
   const [, setLocation] = useLocation();
   const { toast } = useToast();

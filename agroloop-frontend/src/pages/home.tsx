@@ -5,8 +5,14 @@ import { Leaf, Recycle, Users, ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import heroImage from "@assets/Screenshot_20260421-011356_1776734073256.png";
+import { useSEO } from "@/hooks/useSEO";
 
 export default function Home() {
+  useSEO({
+    title: "Accueil",
+    description: "AgroLoopCI connecte producteurs et transformateurs de résidus agro-industriels en Côte d'Ivoire. Zéro gaspillage, impact maximum.",
+    url: "/",
+  });
   const { data: stats, isLoading } = useGetStats();
 
   const formatNumber = (num?: number) => {

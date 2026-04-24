@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "wouter";
+import { useSEO } from "@/hooks/useSEO";
 import {
   TrendingDown, TrendingUp, Minus, BarChart3, Package, Calculator,
   ArrowUpRight, ArrowDownRight, Minus as Minus2,
@@ -108,6 +109,11 @@ function VarBadge({ pct }: { pct: number }) {
 }
 
 export default function Marche() {
+  useSEO({
+    title: "Marché des Prix — Résidus Agricoles",
+    description: "Consultez les prix du marché des résidus agro-industriels en Côte d'Ivoire : cacao, anacarde, plantain et tendances régionales.",
+    url: "/marche",
+  });
   const [typeResidu, setTypeResidu] = useState<string>("Cabosses de cacao");
   const [region, setRegion] = useState<string>("all");
   const [periode, setPeriode] = useState<number>(90);
